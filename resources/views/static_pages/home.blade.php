@@ -3,7 +3,6 @@
 @section('title','主页')
 
 @section('content')
-    @include('shared._messages')
     <div class="jumbotron">
         <h1>Hello Laravel</h1>
         <p class="lead">

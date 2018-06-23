@@ -9,7 +9,7 @@
             <h5>登录</h5>
         </div>
         <div class="panel-body">
-            @include('shared._messages')
+
             @include('shared._errors')
             <form action="{{ route('login') }}" method="post">
                 {{ csrf_field() }}

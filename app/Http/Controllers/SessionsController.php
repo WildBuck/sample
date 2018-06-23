@@ -25,7 +25,14 @@ class SessionsController extends Controller
         ]);
 
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->password],$request->has('remember'))){
-            return redirect()->route('users.show',[Auth::user()]);
+            if(Auth::user()->activated){
+                session()->flash('success','欢迎回来!');
+                return redirect()->intended(route('users.show',[Auth::user()]));
+            }else{
+                Auth::logout();
+                session()->flash('warning','您的账户尚未激活，请检查邮箱中的注册邮件进行激活。');
+                return redirect('/');
+            }
         }else{
             session()->flash('danger','很抱歉，您的邮箱或密码有误');
             return redirect()->back();
