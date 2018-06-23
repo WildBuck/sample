@@ -20,3 +20,7 @@ Route::get('/users/create','UsersController@create')->name('users.create');
 Route::post('/users','UsersController@store')->name('users.store');
 Route::get('/users/{user}','UsersController@show')->name('users.show');
 
+Route::get('/login','SessionsController@create')->name('login');
+Route::post('/login','SessionsController@store')->name('login');
+Route::delete('/logout','SessionsController@destroy')->name('logout');
+
