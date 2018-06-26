@@ -49,4 +49,16 @@ class User extends Authenticatable
     public function sendPasswordRestNotification($token){
         $this->notify(new ResetPassword($token));
     }
+
+    //将Elquent模型关联定义为函数，指明一个用户拥有多条微博
+    //返回用户所拥有的微博
+    public function statuses(){
+        return $this->hasMany(Status::class);
+    }
+
+    //  获取用户微博动态流
+    public function feed(){
+        return $this->statuses()
+                    ->orderBy('created_at','desc');
+    }
 }
